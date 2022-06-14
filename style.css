@@ -1,0 +1,23 @@
+#myform {
+    position: absolute;
+    top: 200px;
+    left: 100px;
+    width: 300px;
+    height:300px;
+    /* border: 1px solid black; */
+}
+#mydata {
+    position: absolute;
+    top: 200px;
+    left: 500px;
+    width: 400px;
+    height:300px;
+
+}
+/* .container{
+    position: absolute;
+    top: 200px;
+    left: 500px;
+    width: 400px;
+    height:300px;
+} */

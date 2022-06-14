@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>My First Assignment</title>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+    <div id="myform">
+        <table class="ml-4">
+            <tr>
+                <td>
+                    <div class="form-group">
+                        <label for="first_name">
+                            First Name
+                        </label>
+                        <input type="text" class="form-control" id="firstName" />
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="form-group">
+                        <label for="lastName">
+                            Last Name
+                        </label>
+                        <input type="text" class="form-control" id="lastName" />
+                    </div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td>
+                    <div class="form-group">
+                        <label for="email">
+                            Email
+                        </label>
+                        <input type="text" class="form-control" id="email" />
+                    </div>
+
+
+
+            </tr>
+
+            <tr>
+                <td>
+                    <div class="form-group">
+                        <label for="country">
+                            Select Country
+                        </label>
+                        <select name="country" id="countrySel" size="1">
+                            <option value="" selected="selected">Select Country</option>
+                        </select>
+                    </div>
+            </tr>
+
+            <tr>
+                <td>
+                    <div class="form-group">
+                        <label for="state">
+                            Select State
+                        </label>
+                        <select name="state" id="stateSel" size="1">
+                            <option value="" selected="selected">Select State</option>
+                        </select>
+                    </div>
+            </tr>
+
+            <tr>
+                <td>
+                    <div class="form-group">
+                        <label for="district">
+                            Select District
+                        </label>
+                        <select name="district" id="districtSel" size="1">
+                            <option value="" selected="selected">Select District</option>
+                        </select>
+                    </div>
+            </tr>
+        </table>
+
+        <input type="button" id="add" value="Add" class="btn btn-primary m-4" onclick="Javascript:addRow()"></td>
+
+    </div>
+
+    <div id="mydata">
+
+        <table id="myTableData" class="table table-striped">
+            <tr>
+                <td><b>Action</b></td>
+                <td><b>First Name</b></td>
+                <td><b>Last Nmae</b></td>
+                <td><b>Email</b></td>
+                <td><b>country</b></td>
+                <td><b>state</b></td>
+                <td><b>district</b></td>
+            </tr>
+        </table>
+        &nbsp;
+
+    </div>
+</body>
+<script>
+    function addRow() {
+
+        var firstName = document.getElementById("firstName");
+        var lastName = document.getElementById("lastName");
+        var email = document.getElementById("email");
+        var table = document.getElementById("myTableData");
+
+        var countrySel = document.getElementById("countrySel");
+        var stateSel = document.getElementById("stateSel");
+        var districtSel = document.getElementById("districtSel");
+
+        var rowCount = table.rows.length;
+        var row = table.insertRow(rowCount);
+        console.log(rowCount);
+        console.log(row);
+        console.log(table);
+
+
+
+        row.insertCell(0).innerHTML = '<input type="button" value = "Delete" onClick="Javacsript:deleteRow(this)">';
+        row.insertCell(1).innerHTML = firstName.value;
+        row.insertCell(2).innerHTML = lastName.value;
+        row.insertCell(3).innerHTML = email.value;
+
+        row.insertCell(4).innerHTML = countrySel.value;
+        row.insertCell(5).innerHTML = stateSel.value;
+        row.insertCell(6).innerHTML = districtSel.value;
+
+
+    }
+
+    function deleteRow(obj) {
+
+        var index = obj.parentNode.parentNode.rowIndex;
+        console.log(index);
+        var table = document.getElementById("myTableData");
+        table.deleteRow(index);
+
+    }
+
+
+
+    // for dropdown
+    var stateObject = {
+        "India": {
+            "Delhi": ["new Delhi", "North Delhi"],
+            "Kerala": ["Thiruvananthapuram", "Palakkad"],
+            "Goa": ["North Goa", "South Goa"],
+        },
+        "Australia": {
+            "South Australia": ["Dunstan", "Mitchell"],
+            "Victoria": ["Altona", "Euroa"]
+        }, "Canada": {
+            "Alberta": ["Acadia", "Bighorn"],
+            "Columbia": ["Washington", ""]
+        },
+    }
+    window.onload = function () {
+        var countrySel = document.getElementById("countrySel"),
+            stateSel = document.getElementById("stateSel"),
+            districtSel = document.getElementById("districtSel");
+        for (var country in stateObject) {
+            countrySel.options[countrySel.options.length] = new Option(country, country);
+        }
+        countrySel.onchange = function () {
+            stateSel.length = 1; 
+            districtSel.length = 1; 
+            if (this.selectedIndex < 1) return;
+            for (var state in stateObject[this.value]) {
+                stateSel.options[stateSel.options.length] = new Option(state, state);
+            }
+        }
+        countrySel.onchange();
+        stateSel.onchange = function () {
+            districtSel.length = 1; 
+            if (this.selectedIndex < 1) return; 
+            var district = stateObject[countrySel.value][this.value];
+            for (var i = 0; i < district.length; i++) {
+                districtSel.options[districtSel.options.length] = new Option(district[i], district[i]);
+            }
+        }
+    }
+</script>
+
+</html>
