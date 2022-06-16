@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>My First Assignment</title>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+    <div id="myform">
+        <table class="ml-4">
+            <tr>
+                <td>
+                    <div class="form-group">
+                        <label for="first_name">
+                            First Name <span class="error">*</span>
+                        </label>
+                        <input type="text" required class="form-control" id="firstName"
+                            onfocusout="validateFirstName(this)" />
+                        <p id="firstName_error" class="error">
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="form-group">
+                        <label for="lastName">
+                            Last Name <span class="error">*</span>
+                        </label>
+                        <input type="text" class="form-control" onfocusout="validateLastName(this)" id="lastName" />
+                        <p id="lastName_error" class="error">
+
+                    </div>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <div class="form-group">
+                        <label for="email">
+                            Email <span class="error">*</span>
+                        </label>
+                        <input type="text" class="form-control" onfocusout="validateEmail(this)" id="email" />
+                        <p id="email_error" class="error">
+
+                    </div>
+
+            </tr>
+            <tr>
+                <td>
+                    <div class="form-group">
+                        <label for="age">
+                            Age <span class="error">*</span>
+                        </label>
+                        <input type="number" class="form-control" onfocusout="validateAge(this)" id="age" />
+                        <p id="age_error" class="error">
+
+                    </div>
+
+            </tr>
+
+            <tr>
+                <td>
+                    <div class="form-group">
+                        <label for="country">
+                            Select Country
+                        </label>
+                        <select name="country" id="countrySel" size="1">
+                            <option value="" selected="selected">Select Country</option>
+                        </select>
+                    </div>
+            </tr>
+
+            <tr>
+                <td>
+                    <div class="form-group">
+                        <label for="state">
+                            Select State
+                        </label>
+                        <select name="state" id="stateSel" size="1">
+                            <option value="" selected="selected">Select State</option>
+                        </select>
+                    </div>
+            </tr>
+
+            <tr>
+                <td>
+                    <div class="form-group">
+                        <label for="district">
+                            Select District
+                        </label>
+                        <select name="district" id="districtSel" size="1">
+                            <option value="" selected="selected">Select District</option>
+                        </select>
+                    </div>
+            </tr>
+        </table>
+        <p class="error m-4" id="allField_error"></p>
+
+        <input type="button" id="add" value="Add" class="btn btn-primary m-4" onclick="Javascript:addRow()"></td>
+
+    </div>
+
+    <div id="mydata">
+
+        <table id="myTableData" class="table table-striped">
+            <tr>
+                <td><b>Action</b></td>
+                <td><b>First Name</b></td>
+                <td><b>Last Nmae</b></td>
+                <td><b>Email</b></td>
+                <td><b>Age</b></td>
+                <td><b>country</b></td>
+                <td><b>state</b></td>
+                <td><b>district</b></td>
+            </tr>
+        </table>
+        &nbsp;
+
+    </div>
+</body>
+<script>
+   function validateFirstName(target) {
+
+
+
+var re = /^[a-zA-Z ]*$/;
+
+if (!target.value || !re.test(target.value)) {
+
+target.value = "";
+
+document.getElementById("firstName_error").innerHTML = "This Field is required";
+
+} else {
+
+document.getElementById("firstName_error").innerHTML = "";
+
+}
+
+
+
+if (!(firstName.value && lastName.value && email.value && age.value)) {
+
+document.getElementById("allField_error").innerHTML = "Please enter all required";
+
+document.getElementById("add").disabled = true;
+
+} else {
+
+document.getElementById("allField_error").innerHTML = "";
+
+document.getElementById("add").disabled = false;
+
+}
+
+}
+
+
+function validateLastName(target) {
+
+
+
+var re = /^[a-zA-Z ]*$/;
+
+if (!target.value || !re.test(target.value)) {
+
+target.value = "";
+
+document.getElementById("lastName_error").innerHTML = "This Field is required";
+
+} else {
+
+document.getElementById("lastName_error").innerHTML = "";
+
+}
+
+
+
+if (!(firstName.value && lastName.value && email.value && age.value)) {
+
+document.getElementById("allField_error").innerHTML = "Please enter all required";
+
+document.getElementById("add").disabled = true;
+
+} else {
+
+document.getElementById("allField_error").innerHTML = "";
+
+document.getElementById("add").disabled = false;
+
+}
+
+}
+    function validateEmail(target) {
+
+var re = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
+
+
+
+if (!target.value || !re.test(target.value)) {
+
+    target.value = "";
+
+    document.getElementById("email_error").innerHTML = "This Field is required";
+
+} else {
+
+    document.getElementById("email_error").innerHTML = "";
+
+}
+
+if (!(firstName.value && lastName.value && email.value && age.value)) {
+
+    document.getElementById("allField_error").innerHTML = "Please enter all required";
+
+    document.getElementById("add").disabled = true;
+
+} else {
+
+    document.getElementById("allField_error").innerHTML = "";
+
+    document.getElementById("add").disabled = false;
+
+}
+
+}
+
+  function validateAge(target) {
+
+
+
+        if (!target.value || !(target.value >= 18 && target.value <= 100)) {
+
+            target.value = "";
+
+            document.getElementById("age_error").innerHTML = "This Field is required";
+
+        } else {
+
+            document.getElementById("age_error").innerHTML = "";
+
+        }
+
+        if (!(firstName.value && lastName.value && email.value && age.value)) {
+
+            document.getElementById("allField_error").innerHTML = "Please enter all required";
+
+            document.getElementById("add").disabled = true;
+
+        } else {
+
+            document.getElementById("allField_error").innerHTML = "";
+
+            document.getElementById("add").disabled = false;
+
+        }
+
+    }
+
+    function addRow() {
+
+        var firstName = document.getElementById("firstName");
+        var lastName = document.getElementById("lastName");
+        var email = document.getElementById("email");
+        var age = document.getElementById("age");
+        var table = document.getElementById("myTableData");
+
+        var countrySel = document.getElementById("countrySel");
+        var stateSel = document.getElementById("stateSel");
+        var districtSel = document.getElementById("districtSel");
+
+        var row = table.insertRow(1);
+        console.log(row);
+        console.log(table);
+
+        if (firstName.value && lastName.value && email.value && age.value) {
+            row.insertCell(0).innerHTML = '<input type="button" value = "Delete" onClick="Javacsript:deleteRow(this)">';
+            row.insertCell(1).innerHTML = firstName.value;
+            row.insertCell(2).innerHTML = lastName.value;
+            row.insertCell(3).innerHTML = email.value;
+            row.insertCell(4).innerHTML = age.value;
+
+            row.insertCell(5).innerHTML = countrySel.value;
+            row.insertCell(6).innerHTML = stateSel.value;
+            row.insertCell(7).innerHTML = districtSel.value;
+        }
+        else {
+            return;
+        }
+    }
+
+    function deleteRow(obj) {
+
+        var index = obj.parentNode.parentNode.rowIndex;
+        console.log(index);
+        var table = document.getElementById("myTableData");
+        table.deleteRow(index);
+
+    }
+
+
+
+    // for dropdown
+    var stateObject = {
+        "India": {
+            "Delhi": ["new Delhi", "North Delhi"],
+            "Kerala": ["Thiruvananthapuram", "Palakkad"],
+            "Goa": ["North Goa", "South Goa"],
+        },
+        "Australia": {
+            "South Australia": ["Dunstan", "Mitchell"],
+            "Victoria": ["Altona", "Euroa"]
+        }, "Canada": {
+            "Alberta": ["Acadia", "Bighorn"],
+            "Columbia": ["Washington", ""]
+        },
+    }
+    window.onload = function () {
+        document.getElementById("add").disabled = true;
+
+        var countrySel = document.getElementById("countrySel"),
+            stateSel = document.getElementById("stateSel"),
+            districtSel = document.getElementById("districtSel");
+        for (var country in stateObject) {
+            countrySel.options[countrySel.options.length] = new Option(country, country);
+        }
+        countrySel.onchange = function () {
+            stateSel.length = 1;
+            districtSel.length = 1;
+            if (this.selectedIndex < 1) return;
+            for (var state in stateObject[this.value]) {
+                stateSel.options[stateSel.options.length] = new Option(state, state);
+            }
+        }
+        countrySel.onchange();
+        stateSel.onchange = function () {
+            districtSel.length = 1;
+            if (this.selectedIndex < 1) return;
+            var district = stateObject[countrySel.value][this.value];
+            for (var i = 0; i < district.length; i++) {
+                districtSel.options[districtSel.options.length] = new Option(district[i], district[i]);
+            }
+        }
+    }
+
+</script>
+
+</html>
+
+
+
+
+
